@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "seco-news-client-side-solution",
+    "id": "63ee92d8-1546-48d3-8194-df49a95703f7",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.17.3"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "secoNews description"
+      },
+      "longDescription": {
+        "default": "secoNews description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "seco-news Feature",
+        "description": "The feature that activates elements of the seco-news solution.",
+        "id": "511f5781-4bc6-44bd-a7b5-8a0d0a1b0f22",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/seco-news.sppkg"
+  }
+}

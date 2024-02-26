@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "seco-news-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/secoNews/SecoNewsWebPart.js",
+          "manifest": "./src/webparts/secoNews/SecoNewsWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "SecoNewsWebPartStrings": "lib/webparts/secoNews/loc/{locale}.js"
+  }
+}

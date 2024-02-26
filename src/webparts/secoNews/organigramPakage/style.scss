@@ -1,0 +1,308 @@
+:root {
+  --spacer-width: 5rem;
+  --linker-height: 2rem;
+  --pink: #f27c8d;
+  --blue: #7b9fe0;
+  --beige: #f5cc7f;
+  --green: #8dccad;
+  --myColor: #00506e;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  padding: 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.9rem;
+}
+
+div.node {
+  --node-width: 15rem;
+  background-color: bisque;
+  color: black;
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  width: fit-content;
+  max-width: 18em;
+  min-width: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  & > a {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  & > div.title {
+    font-weight: bold;
+    font-size: larger;
+    padding-bottom: 1rem;
+  }
+  & > div.roles > div.ellipsis {
+    font-size: x-large;
+    line-height: 0.8rem;
+    padding-bottom: 0.5rem;
+  }
+
+  & > div.roles {
+    & > div.role {
+      display: block;
+      padding: 0.25rem 0.5rem;
+      white-space: nowrap;
+    }
+    & > div.ellipsis {
+      font-size: x-large;
+      line-height: 0.8rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+  & > .popup-wrapper {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: calc(100% + 0.5rem);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0;
+    color: #959da5;
+    border-radius: 0.3rem;
+    min-width: 12rem;
+    transition: opacity 0.3s ease-in-out;
+    transition-delay: 50ms;
+    padding-bottom: 1rem;
+    opacity: 0;
+    display: none;
+
+    & > div.title {
+      border-bottom: 3px solid #a3a3ff;
+      padding: 10px;
+    }
+    & > a.title {
+      display: inline-block;
+      color: #959da5;
+      width: 100%;
+      padding: 10px;
+      border-bottom: 3px solid #a3a3ff;
+    }
+
+    & > div.subtitle {
+      padding: 1rem 2rem 0.2rem 1.5rem;
+      color: #dfe2e5;
+      text-align: left;
+      & > div.role {
+        padding: 0.2rem 0;
+      }
+    }
+    & > div.ellipsis {
+      font-size: x-large;
+      line-height: 0.2rem;
+      padding-bottom: 0.7rem;
+    }
+
+    & > div.pointer {
+      position: absolute;
+      height: 5px;
+      margin-left: -0.6rem;
+      border: 5px solid transparent;
+      border-top-color: rgba(0, 0, 0, 0.8);
+      top: 1rem;
+      transform: rotate(90deg);
+    }
+  }
+  &:hover > .popup-wrapper {
+    opacity: 1;
+  }
+}
+
+.node[data-news-node] {
+  padding: 0.5rem 2rem 1rem 2rem;
+  & > div.news > a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  & > div.upper-title {
+    padding: 0.5rem 0 0.5rem 0;
+    font-weight: 600;
+  }
+  & > div.title {
+    position: relative;
+    & > a {
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+div.stage-container {
+  display: flex;
+  flex-direction: row;
+  & > div.middle-line {
+    border-left: solid black 2px;
+    flex-basis: 2px;
+  }
+  div.stage-left,
+  div.stage-right {
+    flex-basis: calc(50% - 1.05px);
+    display: grid;
+    grid-template-rows: [row1] min-content [row2] min-content [row3];
+    grid-gap: 0;
+    padding-bottom: 1rem;
+    & > div.linker {
+      grid-column: linker-col-start / linker-col-end;
+      grid-row: row1 / row2;
+      border-top: solid black 2px;
+      height: var(--linker-height);
+    }
+    & > .child-container {
+      grid-column: child-col-start / child-col-end;
+      grid-row: row2 / row3;
+      justify-self: center;
+    }
+    & > .spacer {
+      grid-column: child-col-end / linker-col-end;
+      grid-row: row2 / row3;
+    }
+  }
+  div.stage-left {
+    grid-template-columns:
+      [child-col-start] 1fr [linker-col-start] 1fr [child-col-end] var(
+        --spacer-width
+      )
+      [linker-col-end];
+
+    & > div.linker {
+      border-left: solid rgb(85, 85, 85) 2px;
+    }
+  }
+  div.stage-right {
+    grid-template-columns: [linker-col-start] var(--spacer-width) [child-col-start] 1fr [linker-col-end] 1fr [child-col-end];
+    & > div.linker {
+      border-right: solid rgb(85, 85, 85) 2px;
+    }
+  }
+}
+
+div.tree-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & > div.linker {
+    height: var(--linker-height);
+    border-left: solid rgb(85, 85, 85) 2px;
+    display: block;
+  }
+}
+
+div.three-child-container {
+  display: flex;
+  flex-direction: row;
+  & > div.left-child,
+  & > div.right-child {
+    flex-basis: calc(100% / 3);
+    display: grid;
+    grid-template-rows: [row1] min-content [row2] min-content [row3];
+    grid-gap: 0;
+    padding-bottom: 1rem;
+    & > div.linker {
+      grid-column: linker-col-start / linker-col-end;
+      grid-row: row1 / row2;
+      border-top: solid rgb(85, 85, 85) 2px;
+      height: var(--linker-height);
+    }
+    & > .child-container {
+      grid-column: child-col-start / child-col-end;
+      grid-row: row2 / row3;
+      justify-self: center;
+    }
+    & > .spacer {
+      grid-column: child-col-end / linker-col-end;
+      grid-row: row2 / row3;
+    }
+  }
+  & > div.left-child {
+    grid-template-columns:
+      [child-col-start] 1fr [linker-col-start] 1fr [child-col-end] var(
+        --spacer-width
+      )
+      [linker-col-end];
+
+    & > div.linker {
+      border-left: solid rgb(85, 85, 85) 2px;
+    }
+  }
+  & > div.right-child {
+    grid-template-columns: [linker-col-start] var(--spacer-width) [child-col-start] 1fr [linker-col-end] 1fr [child-col-end];
+    & > div.linker {
+      border-right: solid rgb(85, 85, 85) 2px;
+    }
+  }
+  & > div.middle-child {
+    flex-basis: calc(100% / 3);
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: solid rgb(85, 85, 85) 2px;
+    & > div.linker {
+      height: var(--linker-height);
+      border-left: solid rgb(85, 85, 85) 2px;
+      display: block;
+    }
+    & > .child-container {
+      justify-self: center;
+    }
+  }
+}
+
+div.vertical-container {
+  --horizontal-offset: 2rem;
+  & > div.linker {
+    height: var(--linker-height);
+    border-left: solid rgb(85, 85, 85) 2px;
+    display: block;
+    margin-left: var(--horizontal-offset);
+  }
+  & > div.children-container {
+    margin-left: var(--horizontal-offset);
+    & > div.child {
+      border-left: solid rgb(85, 85, 85) 2px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      & > div.linker {
+        width: var(--linker-height);
+        border-top: solid rgb(85, 85, 85) 2px;
+        display: inline-block;
+      }
+      & > div.node {
+        display: inline-block;
+      }
+    }
+    & > div.child:last-child {
+      border-left: none;
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        height: 43%;
+        width: 2px;
+        left: 0;
+        top: 0;
+        background-color: black;
+      }
+    }
+  }
+}
